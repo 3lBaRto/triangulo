@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">claseFebrero20</string>
+    <string name="title">welcome</string>
+
+    <string name="sideone">side one</string>
+    <string name="sidetwo">side two</string>
+    <string name="calculate">calculate</string>
+    <string name="result">the result is </string>
+</resources>
