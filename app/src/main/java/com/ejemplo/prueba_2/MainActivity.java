@@ -2,6 +2,7 @@ package com.ejemplo.prueba_2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
         Calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                float sideone = Float.parseFloat(sideOne.getText().toString());
+                /*float sideone = Float.parseFloat(sideOne.getText().toString());
                 float sidetwo =Float.parseFloat(sideTwo.getText().toString());
                 float result = sideone*sidetwo;
-                Result.setText(String.valueOf(result));
+                Result.setText(String.valueOf(result));*/
+                enviarDatos(view);
             }
         });
     }
@@ -77,5 +79,32 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "Estoy  onDestroy");
+    }
+
+    /*
+    // creo una funcion, con nombre gotoActivity2, es publica y no espera nada de respuesta
+    // View es el tipo de dato(en este caso, un objeto que es la vista, por eso View
+    //view es el nombre de ese objeto que recibe la funcion
+    public void gotoActivity2(View view){
+        String correo = "holamundo@gmail.com";
+        Intent pasarDato = new Intent(this,segundaPantalla.class);
+        pasarDato.putExtra("email",correo);
+        startActivity(pasarDato);
+
+
+    }*/
+    public void enviarDatos(View view){
+        float l1 = Float.parseFloat(sideOne.getText().toString());
+        float l2 = Float.parseFloat(sideOne.getText().toString());
+        float resultado = l1*l2;
+
+        Intent pasarDato = new Intent(this,segundaPantalla.class);
+
+        pasarDato.putExtra("lado1",l1);
+        pasarDato.putExtra("lado2",l2);
+        pasarDato.putExtra("resultado",resultado);
+
+        startActivity(pasarDato);
+
     }
 }
