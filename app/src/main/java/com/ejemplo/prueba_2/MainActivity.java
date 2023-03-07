@@ -3,6 +3,7 @@ package com.ejemplo.prueba_2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,17 @@ public class MainActivity extends AppCompatActivity {
     TextView Result;
     Button Calculate;
 
+    Button AbrirG;
+
+    Button Llamar;
+
+    String phonenumber = "6043004411700";
+
+
+
+
+
+
 
 
 
@@ -26,10 +38,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG, "Estoy oncreate");
-        sideOne =findViewById(R.id.sideone);
-        sideTwo =findViewById(R.id.sidetwo);
-        Result =findViewById(R.id.txtResult);
-        Calculate =findViewById(R.id.calculate);
+        sideOne = findViewById(R.id.sideone);
+        sideTwo = findViewById(R.id.sidetwo);
+        Result = findViewById(R.id.txtResult);
+        Calculate = findViewById(R.id.calculate);
+        AbrirG = findViewById(R.id.agoogle);
+        Llamar = findViewById(R.id.llamar);
 
 
 
@@ -48,8 +62,31 @@ public class MainActivity extends AppCompatActivity {
                 Result.setText(String.valueOf(result));*/
                 enviarDatos(view);
             }
+
+
+
         });
+        AbrirG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boton2(view);
+
+            }
+        });
+
+        Llamar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                llamar(view);
+            }
+
+
+        });
+
     }
+
+
+
 
     @Override
     protected void onRestart() {
@@ -106,5 +143,22 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(pasarDato);
 
+    }
+
+    public void boton2(View view) {
+        Intent irAGoogle = new Intent(Intent.ACTION_VIEW);
+        irAGoogle.setData(Uri.parse("https://www.google.com"));
+
+        startActivity(irAGoogle);
+    }
+
+    public void llamar(View view) {
+        Intent llamada = new Intent(Intent.ACTION_DIAL);
+        llamada.setData(Uri.parse("tel: " + phonenumber));
+
+        if(llamada.resolveActivity(getPackageManager())!=null)
+        {
+            startActivity(llamada);
+        }
     }
 }
